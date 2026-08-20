@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +26,11 @@ public class Order {
     @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(nullable = false)
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    @Column(nullable = false)
+    private BigDecimal totalPrice;
 
 
     public Order() {
