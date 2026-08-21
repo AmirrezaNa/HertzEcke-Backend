@@ -3,6 +3,7 @@ package com.hertzecke.HertzEcke_Backend.controller;
 import com.hertzecke.HertzEcke_Backend.dto.OrderDTO;
 import com.hertzecke.HertzEcke_Backend.dto.OrderRequestDTO;
 import com.hertzecke.HertzEcke_Backend.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createOrder(@RequestBody OrderRequestDTO request) {
+    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderRequestDTO request) {
         try {
             OrderDTO createdOrder = orderService.createOrder(request);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);

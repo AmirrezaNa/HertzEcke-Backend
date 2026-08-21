@@ -5,6 +5,7 @@ import com.hertzecke.HertzEcke_Backend.dto.OrderRequestDTO;
 import com.hertzecke.HertzEcke_Backend.model.MenuItem;
 import com.hertzecke.HertzEcke_Backend.model.Order;
 import com.hertzecke.HertzEcke_Backend.model.OrderItem;
+import com.hertzecke.HertzEcke_Backend.model.OrderStatus;
 import com.hertzecke.HertzEcke_Backend.repository.MenuItemRepository;
 import com.hertzecke.HertzEcke_Backend.repository.OrderRepository;
 import jakarta.transaction.Transactional;
@@ -63,6 +64,7 @@ public class OrderService {
 
         order.setOrderItems(orderItems);
         order.setTotalPrice(total);
+        order.setStatus(OrderStatus.PENDING);
 
         Order savedOrder = orderRepository.save(order);
         return OrderDTO.orderEntityToDTO(savedOrder);
